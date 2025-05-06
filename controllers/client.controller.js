@@ -24,8 +24,8 @@ const findOne = async (req, res) => {
 const createClient = async (req, res) => {
   try {
     const body = req.body;
-    await clientModel.create(body);
-    res.status(201).send({ message: "Client created" });
+    const data = await clientModel.create(body);
+    res.status(201).send({ message: "Client created", data });
   } catch (error) {
     console.error("error", error.message);
     res.status(500).send({ error: "Failed to create client" });
@@ -37,8 +37,8 @@ const updateClient = async (req, res) => {
   try {
     const { id } = req.params;
     const body = req.body;
-    await clientModel.findByIdAndUpdate(id, body);
-    res.status(200).send({ message: "Client updated" });
+    const data = await clientModel.findByIdAndUpdate(id, body);
+    res.status(200).send({ message: "Client updated", data });
   } catch (error) {
     console.error("error", error.message);
     res.status(500).send({ error: "Failed to update client" });

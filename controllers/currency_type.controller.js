@@ -22,8 +22,8 @@ const findOne = async (req, res) => {
 const createCurrency = async (req, res) => {
   try {
     const body = req.body;
-    await currencyTypeModel.create(body);
-    res.status(201).send({ message: "Currency Type created" });
+    const data = await currencyTypeModel.create(body);
+    res.status(201).send({ message: "Currency Type created", data });
   } catch (error) {
     console.log("error", error.message);
   }
@@ -32,8 +32,8 @@ const createCurrency = async (req, res) => {
 const updateCurrency = async (req, res) => {
   try {
     const { id } = req.params;
-    await currencyTypeModel.findByIdAndUpdate(id, req.body);
-    res.status(200).send({ message: "Currency Type updated" });
+    const data = await currencyTypeModel.findByIdAndUpdate(id, req.body);
+    res.status(200).send({ message: "Currency Type updated", data });
   } catch (error) {
     console.log("error", error.message);
   }

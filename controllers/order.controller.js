@@ -2,7 +2,7 @@ const orderModel = require("../model/order");
 
 const findAll = async (req, res) => {
   try {
-    const orders = await orderModel.find({});
+    const orders = await orderModel.find().populate("client_id");
     res.status(200).send({ data: orders });
   } catch (error) {
     console.log("error", error.message);
@@ -21,9 +21,9 @@ const findOne = async (req, res) => {
 
 const createOrder = async (req, res) => {
   try {
-    const body = req.body;
-    await orderModel.create(body);
-    res.status(201).send({ message: "Order created" });
+    const body = req.body;  
+    const data = await orderModel.create(body);
+    res.status(201).send({ message: "Order created", data });
   } catch (error) {
     console.log("error", error.message);
   }
@@ -32,8 +32,8 @@ const createOrder = async (req, res) => {
 const updateOrder = async (req, res) => {
   try {
     const { id } = req.params;
-    await orderModel.findByIdAndUpdate(id, req.body);
-    res.status(200).send({ message: "Order updated" });
+    const data = await orderModel.findByIdAndUpdate(id, req.body);
+    res.status(200).send({ message: "Order updated", data });
   } catch (error) {
     console.log("error", error.message);
   }

@@ -10,7 +10,7 @@ const {
 
 router.get("/all", findAll);
 router.get("/:id", findOne);
-router.post("/", createOrder);
+router.post("/create", createOrder);
 router.put("/:id", updateOrder);
 router.delete("/:id", removeOrder);
 

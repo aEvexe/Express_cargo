@@ -8,9 +8,9 @@ const {
   removeCurrency,
 } = require("../controllers/currency_type.controller");
 
-router.get("/", findAll);
+router.get("/all", findAll);
 router.get("/:id", findOne);
-router.post("/", createCurrency);
+router.post("/create", createCurrency);
 router.put("/:id", updateCurrency);
 router.delete("/:id", removeCurrency);
 
